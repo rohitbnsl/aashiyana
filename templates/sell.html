@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block head%}
+<style>
+   body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+   .form-control {
+       border: 1px solid #ccc;
+       border-radius: 5px;
+       padding: 10px;
+   }
+   
+   input[type="text"], 
+   input[type="tel"], 
+   textarea {
+       width: 100%;
+       box-sizing: border-box;
+       margin-bottom: 10px;
+   }
+   
+   input[type="radio"], 
+   input[type="checkbox"] {
+       margin-right: 5px;
+   }
+   
+   .btn {
+       border-radius: 5px;
+       padding: 10px;
+       font-size: 16px;
+       font-weight: bold;
+       cursor: pointer;
+   }
+   
+   .btn-success {
+       background-color: #28a745;
+       color: #fff;
+       border: none;
+   }
+   
+   .btn-danger {
+       background-color: #dc3545;
+       color: #fff;
+       border: none;
+   }
+   
+   .text-danger {
+       color: #dc3545;
+   }
+   
+   label {
+       font-weight: bold;
+   }
+   
+   h4 {
+       margin: 20px 0;
+   }
+   
+   .col-md-6 {
+       width: 50%;
+       float: left;
+   }
+   
+   .offset-3 {
+       margin-left: 25%;
+   }
+   
+   @media (max-width: 768px) {
+       .col-md-6 {
+           width: 100%;
+           float: none;
+       }
+       
+       .offset-3 {
+           margin-left: 0;
+       }
+   }
+   </style>
+{%endblock head%}
+{% block body %} 
+
+
+<div class="container-fluid">
+   <div class="row">
+       <div class="col-md-6 offset-3">
+<form action="/insertsell/" method="post" enctype="multipart/form-data">
+   {% csrf_token %}
+   <input type="hidden" value="sale" name="property_for" />
+<h4><label>title<span class="text-danger">*</span></label>
+<input type="text" class="form-control" placeholder="enter your title" name="title" pattern="[A-Z a-z]*" required/>
+
+<h4><label>location</label>
+<textarea class="form-control" name="location"></textarea>
+<label>parking</label></h4>
+<label>yes</label>
+<input type="radio" name="parking" value="yes" />
+<label>no</label>
+<input type="radio" name="parking" value="no" />
+<br/>
+
+<h4><label>property Type</label></h4>
+<select class="form-control" name="property_type">
+   <option value="">-Select Property-</option>
+   <option>apartment</option>
+   <option>bungalow</option>
+   <option>house</option>
+   
+   <option>villa</option>
+   <option>guest</option>
+   <option>land</option>
+</select>
+<h4><label>Property price</label></h4>
+<div class="col-md-12"> 
+   <input type="text" placeholder="property price" name="property_price" class="p-2 form control">
+   </div>
+<h4><label class="fw-bold">Description</label></h4>
+   <textarea class="form-control" name="description" ></textarea>
+
+<h4><label>photo1</label>
+<input type="file" class="form-control" name="photo1" accept=".jpg,.png,.pdf,.jpeg,.webp" />
+<label>photo2</label>
+<input type="file" class="form-control" name="photo2" accept=".jpg,.png,.pdf,.jpeg,.webp" />
+<label>photo3</label>
+<input type="file" class="form-control" name="photo3" accept=".jpg,.png,.pdf,.jpeg,.webp" />
+<label>photo4</label>
+<input type="file" class="form-control" name="photo4" accept=".jpg,.png,.pdf,.jpeg,.webp" />
+<label>No of Floors</label>
+<select class="form-control" name="no_of_floors"> 
+   {% for i in '0123456789'|make_list %}
+   <option>{{ forloop.counter }}</option>
+   {% endfor %}
+</select>
+<label>No of rooms</label>
+<select class="form-control" name="no_of_rooms">
+   {% for i in '0123456789'|make_list %}
+   <option>{{ forloop.counter }}</option>
+   {% endfor %}
+</select>
+<label>No of bathrooms</label> 
+<select class="form-control" name="no_of_bathrooms">
+   {% for i in '0123456789'|make_list %}
+   <option>{{ forloop.counter }}</option>
+   {% endfor %}
+</select>
+
+<h4><label>year build</label></h4>
+<div class="col-md-12">
+   <input type="text" placeholder="year build" name="year_build" class="p-2 form control">
+   </div>
+
+<h4><label>area.sqft</label></h4>
+<div class="col-md-12">
+      <input type="text" placeholder="area sqft" name="area_sqft" class="p-2 form control">
+      </div>
+<h4><label>Map location</label></h4>
+<div class="col-md-12"></div>
+  <textarea class="form-control" name="map_location"></textarea>
+<h4><label>contact person<span class="text-danger">*</span></label>
+   <input type="text" class="form-control" placeholder="enter your name" name="contact_person" pattern="[A-Z a-z]*" required/>
+<label>Phone</label>
+<div class="input-group">
+   <span class="input-group-text">+91</span>
+<input type="tel" class="form-control" name="contact_no" maxlength="10" pattern="[6|7|8|9][0-9]{9}" /></h4>
+</div>
+
+
+<div class="col-md-10 mt-4 text-center ">
+<input type="checkbox" />
+<label>I accept the terms</label>
+<br/>
+<!---<input type="submit" />-->
+<button type="submit" class="btn btn-success">Submit</button>
+<input type="reset" class="btn btn-danger" value="clear" /></h4>
+</div>
+</form>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+
+   
+{%endblock body%} 

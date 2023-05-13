@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block head%}
+<style>
+    
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+    
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    input[type=text], input[type=email], textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      margin-bottom: 10px;
+    }
+    
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    input[type=submit] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    .success {
+      background-color: #DFF2BF;
+      border: 1px solid #4F8A10;
+      color: #4F8A10;
+      margin-bottom: 20px;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    .error {
+      background-color: #FFBABA;
+      border: 1px solid #D8000C;
+      color: #D8000C;
+      margin-bottom: 20px;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    /* Responsive design */
+    @media screen and (max-width: 600px) {
+      form {
+        width: 100%;
+      }
+    }
+  </style>
+{%endblock head%}
+{% block body %} 
+ 
+<section>
+    <div class="row " id="bg">
+        <div class="col-md-12 text-danger  ms-3">
+            <h1 class="ms-3  fw-bold" >Contact us</h1>
+          
+        </div>
+    </div>
+    
+<div class="container-fluid" id="contact-bg">
+    <div class="row mt-4">
+        <div class="col-md-6 offset-3 p-5">        
+    <form action="/insertcontact/" method="post">
+        {% csrf_token %}
+    
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name.." required>
+        <label class="fw-bold">Phone</label>
+        <div class="input-group">
+        <span class="input-group-text">+91</span>
+        <input type="tel" class="form-control" name="phone" maxlength="10" pattern="[6|7|8|9][0-9]{9}" />
+        </div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email.." required>
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject.." required>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Write something.." required></textarea>
+    
+     <!---<input type="submit" />-->
+    <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+    
+    
+        </div> 
+    </div>
+            </div>
+
+  <div id="color" class="col-md-12 p-5 my-4 d-flex justify-content-around align-items-center ">
+<div>
+    <h2>Become a Real Estate Agent</h2> 
+        <p>We only work with the best companies around the globe</p>
+    </div>
+        <a href="/login"><button class="btn btn-danger px-5 py-3 rounded-0  mt-3">Login</button></a>
+  </div>
+  </div> 
+  </section>
+  
+  <!--Google Maps--> 
+
+{%endblock body%} 
